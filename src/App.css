@@ -1,14 +1,10 @@
-.App {
-  margin: 0;
-}
-
 button {
   cursor: pointer;
   border: none;
 }
 
 .quiz-container {
-  width: 464px;
+  width: 40%;
   min-height: 400px;
   margin: auto;
   background: #ffffff;
@@ -23,7 +19,7 @@ button {
 
 .quiz-heading {
   margin: 1.5% auto 0;
-  width: 464px;
+  width: 40%;
   font-weight: bold;
   font-size: 36px;
   text-transform: uppercase;
@@ -158,3 +154,9 @@ button {
   font-size: 18px;
   color: #1d355d;
 }
+
+/* TODO: */
+/* Make design responsive
+Add images to start page, results page and top of questions
+Change style of right answers result-count
+style edits on options-button */
