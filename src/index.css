@@ -1,7 +1,11 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  /* background: linear-gradient(-70deg, #fa7c30 30%, rgba(0, 0, 0, 0) 30%),
-    #fdcd3b; */
-  background: rgba(96, 102, 208, 0.7);
+  background: linear-gradient(
+      -70deg,
+      rgba(96, 102, 208, 0.7) 50%,
+      rgba(0, 0, 0, 0) 30%
+    ),
+    #1d355d;
+  /* background: rgba(96, 102, 208, 0.7); */
 }
