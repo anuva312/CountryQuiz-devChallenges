@@ -41,7 +41,7 @@ button {
 .quiz-option-button {
   width: 100%;
   padding: 3%;
-  margin: 2% 0;
+  margin: 4% 0;
   background: #ffffff;
   border: 2px solid rgba(96, 102, 208, 0.7);
   box-sizing: border-box;
@@ -138,6 +138,10 @@ img {
   padding: 5% 0 0;
 }
 
+.start-image {
+  padding-top: 20%;
+}
+
 .result-heading {
   text-align: center;
   font-family: Poppins;
@@ -167,8 +171,56 @@ img {
 .material-icons {
   align-self: center;
 }
-/* TODO: */
-/* Make design responsive
-Add images to start page, results page and top of questions
-Change style of right answers result-count
-style edits on options-button */
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #1d355d;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .quiz-container,
+  .quiz-heading {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .quiz-container,
+  .quiz-heading {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .quiz-container,
+  .quiz-heading {
+    width: 90%;
+  }
+}
