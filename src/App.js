@@ -18,7 +18,7 @@ function App() {
       Math.floor(Math.random() * countriesCount)
     );
     const distinct_Random_list = new Set(random_list);
-    // console.log(random_list, distinct_Random_list);
+    // In case the random numbers generated are not distinct, call the same function again
     return random_list.length === distinct_Random_list.size
       ? random_list
       : getRandomIntegers(optionsCount, countriesCount);
@@ -27,15 +27,18 @@ function App() {
   const getQuestion = function () {
     if (countriesDetails) {
       let quiz = {};
+      // The random numbers generated will be treated as the index of the countries to be used for the quiz as options
       const answer_options = getRandomIntegers(
         noOfOptions,
         countriesDetails.length
       );
       const options_alphabets = ["A. ", "B. ", "C. ", "D. "];
+      // Choose one random option as the right answer
       const right_answer =
         answer_options[Math.floor(Math.random() * noOfOptions)];
-      // console.log("Right Answer", right_answer);
+      // Type of the question also generated randomly
       const type = questionTypes[Math.floor(Math.random() * noOfQuestionTypes)];
+      // Depending on the type of question selected, set questions and images if needed
       switch (type) {
         case "flag":
           quiz = {
@@ -69,8 +72,10 @@ function App() {
         default:
           break;
       }
-      // console.log(quiz);
+
       setCurrentQuiz(quiz);
+
+      // Using the indices, find the actual names of the countries
       setOptions(
         answer_options.map(
           (option, index) =>
@@ -107,24 +112,22 @@ function App() {
 
   useEffect(() => {
     async function getCountryDetails() {
-      // console.log("Inside Get Details");
       const url = "https://restcountries.com/v3.1/all";
       try {
         const response = await (await fetch(url)).json();
-        // console.log(response);
+
         const details = response?.map((country) => {
           const countryDetail = {
             name: country.name.common,
-            capital: country.capital, //.join(", "),
+            capital: country.capital,
             coatOfArms: country.coatOfArms.png
               ? country.coatOfArms.png
               : country.coatOfArms.svg,
-            flags: country.flags.png, // || country.flags.svg,
+            flags: country.flags.png,
           };
           return countryDetail;
         });
 
-        // console.log(details);
         setCountriesDetails(details);
       } catch (error) {
         console.log(error);
@@ -132,12 +135,14 @@ function App() {
     }
     getCountryDetails();
   }, []);
+
   return (
     <div className="App">
       <div className="quiz-heading">Country Quiz</div>
       <div className="quiz-container">
         {countriesDetails ? (
           <div>
+            {/* Home Page */}
             {!currentQuiz && !isResultsPage ? (
               <div>
                 <div className="start-image">
@@ -155,7 +160,8 @@ function App() {
                   </button>
                 </div>
               </div>
-            ) : isResultsPage ? (
+            ) : // Page Showing Results
+            isResultsPage ? (
               <div>
                 <div className="result-image">
                   <img
@@ -185,6 +191,7 @@ function App() {
                 </div>
               </div>
             ) : (
+              // The actual quiz questions and options
               <div className="quiz-question-container">
                 {currentQuiz.image && (
                   <div className="quiz-image">
@@ -215,6 +222,7 @@ function App() {
                 </div>
 
                 <div className="next-results-button-container">
+                  {/* Next Button  shown if answer is right*/}
                   {gotAnswerRight && isAnswerSelected ? (
                     <button
                       className={"next-button"}
@@ -223,6 +231,7 @@ function App() {
                       Next
                     </button>
                   ) : !gotAnswerRight && isAnswerSelected ? (
+                    // Results Button shown if wrong answer is selected
                     <button
                       className={"next-button"}
                       onClick={() => setIsResultsPage(true)}
