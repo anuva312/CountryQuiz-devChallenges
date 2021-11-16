@@ -1,11 +1,29 @@
 body {
-  margin: 0;
   font-family: "Poppins", sans-serif;
+  min-height: 90vh;
+  max-width: 1200px;
+  margin: 0 auto;
   background: linear-gradient(
       -70deg,
       rgba(96, 102, 208, 0.7) 50%,
       rgba(0, 0, 0, 0) 30%
     ),
     #1d355d;
-  /* background: rgba(96, 102, 208, 0.7); */
+}
+
+.footer {
+  margin: 3% auto 0;
+  width: 90%;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.footer > a {
+  text-decoration: underline;
+  font-weight: bold;
+  color: inherit;
 }
