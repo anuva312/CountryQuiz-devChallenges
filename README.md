@@ -21,7 +21,7 @@ Challenge: Create a country quiz app using an API. Use Front-end libraries like 
 Fulfill user stories below:
 
 - User story: I can see at least 2 types of questions: a city is the capital of.. or a flag belong to country..
-- User story: I can see select an answer
+- User story: I can select an answer
 - User story: I can see if my answer is correct or incorrect
 - User story: When I answer correctly, I can move on to the next question
 - User story: When I answer incorrectly, I can see my results and try again
@@ -33,21 +33,25 @@ Fulfill user stories below:
 
 ### Demo
 
-<!-- _Find the site in action [here](https://musing-pike-ae2f14.netlify.app/)!_
+Find the site in action [here]()!
 
-![screenshot-random-quote](src/images/randomQuote.PNG)
+#### Quiz Question
 
-![screenshot-quotes-by-author](src/images/quotesByAuthor.PNG) -->
+![quiz-question](public/assets/images/quiz-question.PNG)
+
+#### With answer
+
+![quiz-with-answer](public/assets/images/quiz-with-answer.PNG)
+
+#### Results Page
+
+![quiz-result-page](public/assets/images/results.PNG)
 
 ### Built With
-
-<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
 
 - [React](https://reactjs.org/)
 
 ## How To Use
-
-<!-- For example: -->
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [yarn](https://yarnpkg.com/). From your command line:
 
