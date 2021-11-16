@@ -31,6 +31,7 @@ function App() {
         noOfOptions,
         countriesDetails.length
       );
+      const options_alphabets = ["A. ", "B. ", "C. ", "D. "];
       const right_answer =
         answer_options[Math.floor(Math.random() * noOfOptions)];
       // console.log("Right Answer", right_answer);
@@ -40,28 +41,42 @@ function App() {
           quiz = {
             image: countriesDetails[right_answer].flags,
             question: "Which country does this flag belong to?",
-            answer: countriesDetails[right_answer].name,
+            answer:
+              options_alphabets[
+                answer_options.findIndex((element) => element === right_answer)
+              ] + countriesDetails[right_answer].name,
           };
           break;
         case "capital":
           quiz = {
             question: `${countriesDetails[right_answer].capital} is the capital of...`,
-            answer: countriesDetails[right_answer].name,
+            answer:
+              options_alphabets[
+                answer_options.findIndex((element) => element === right_answer)
+              ] + countriesDetails[right_answer].name,
           };
           break;
         case "coatOfArms":
           quiz = {
             image: countriesDetails[right_answer].coatOfArms,
             question: "This is the Coat of Arms of...",
-            answer: countriesDetails[right_answer].name,
+            answer:
+              options_alphabets[
+                answer_options.findIndex((element) => element === right_answer)
+              ] + countriesDetails[right_answer].name,
           };
           break;
         default:
           break;
       }
-      console.log(quiz);
+      // console.log(quiz);
       setCurrentQuiz(quiz);
-      setOptions(answer_options.map((option) => countriesDetails[option].name));
+      setOptions(
+        answer_options.map(
+          (option, index) =>
+            options_alphabets[index] + countriesDetails[option].name
+        )
+      );
     }
   };
 
@@ -81,6 +96,9 @@ function App() {
   };
 
   const onClickNext = function () {
+    const newQuiz = { ...currentQuiz };
+    delete newQuiz["image"];
+    setCurrentQuiz(newQuiz);
     isAnswerSelected.classList.remove("selected");
     setGotAnswerRight(false);
     setIsAnswerSelected(false);
@@ -116,104 +134,110 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <header className="App-header"></header>
       <div className="quiz-heading">Country Quiz</div>
-      {countriesDetails && (
-        <div className="quiz-container">
-          {!currentQuiz && !isResultsPage ? (
-            <div>
-              <div className="start-image">
-                <img
-                  src={"/assets/images/quiz-result.PNG"}
-                  alt="country-question"
-                ></img>
-              </div>
-              <div className="start-button-container">
-                <button className="start-button" onClick={() => getQuestion()}>
-                  Start
-                </button>
-              </div>
-            </div>
-          ) : isResultsPage ? (
-            <div>
-              <div className="result-image">
-                <img
-                  src={"/assets/images/quiz-result.PNG"}
-                  alt="country-question"
-                ></img>
-              </div>
-              <div className="result-heading">Results</div>
-              <div className="result-count">
-                You got{" "}
-                <span className="right-answer-count">{countOfQuestions}</span>{" "}
-                right answers
-              </div>
-              <div className="start-button-container">
-                <button
-                  className="try-again-button"
-                  onClick={() => {
-                    setCurrentQuiz(false);
-                    setIsResultsPage(false);
-                    setIsAnswerSelected(false);
-                    setCountOfQuestions(0);
-                    setGotAnswerRight(true);
-                  }}
-                >
-                  Try Again
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div className="quiz-question-container">
-              {currentQuiz.image && (
-                <div className="quiz-image">
-                  <img src={currentQuiz.image} alt="country-question"></img>
+      <div className="quiz-container">
+        {countriesDetails ? (
+          <div>
+            {!currentQuiz && !isResultsPage ? (
+              <div>
+                <div className="start-image">
+                  <img
+                    src={"/assets/images/quiz-result.PNG"}
+                    alt="country-question"
+                  ></img>
                 </div>
-              )}
-              <div className="quiz-question">{currentQuiz?.question}</div>
-              <div className="quiz-options">
-                {options.map((option, index) => (
+                <div className="start-button-container">
                   <button
-                    key={index}
-                    className={`quiz-option-button ${
-                      option === currentQuiz.answer
-                        ? `right-answer ${isAnswerSelected ? "selected" : ""}`
-                        : "wrong-answer"
-                    } `}
-                    onClick={(e) => onSubmitAnswer(e)}
-                    disabled={isAnswerSelected}
+                    className="start-button"
+                    onClick={() => getQuestion()}
                   >
-                    {option}
-                    {option === currentQuiz.answer && isAnswerSelected && (
-                      <span className="material-icons">
-                        check_circle_outline
-                      </span>
-                    )}
+                    Start
                   </button>
-                ))}
+                </div>
               </div>
+            ) : isResultsPage ? (
+              <div>
+                <div className="result-image">
+                  <img
+                    src={"/assets/images/quiz-result.PNG"}
+                    alt="country-question"
+                  ></img>
+                </div>
+                <div className="result-heading">Results</div>
+                <div className="result-count">
+                  You got{" "}
+                  <span className="right-answer-count">{countOfQuestions}</span>{" "}
+                  right answers
+                </div>
+                <div className="start-button-container">
+                  <button
+                    className="try-again-button"
+                    onClick={() => {
+                      setCurrentQuiz(false);
+                      setIsResultsPage(false);
+                      setIsAnswerSelected(false);
+                      setCountOfQuestions(0);
+                      setGotAnswerRight(true);
+                    }}
+                  >
+                    Try Again
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="quiz-question-container">
+                {currentQuiz.image && (
+                  <div className="quiz-image">
+                    <img src={currentQuiz.image} alt="country-question"></img>
+                  </div>
+                )}
+                <div className="quiz-question">{currentQuiz?.question}</div>
+                <div className="quiz-options">
+                  {options.map((option, index) => (
+                    <button
+                      key={index}
+                      className={`quiz-option-button ${
+                        option === currentQuiz.answer
+                          ? `right-answer ${isAnswerSelected ? "selected" : ""}`
+                          : "wrong-answer"
+                      } `}
+                      onClick={(e) => onSubmitAnswer(e)}
+                      disabled={isAnswerSelected}
+                    >
+                      {option}
+                      {option === currentQuiz.answer && isAnswerSelected && (
+                        <span className="material-icons">
+                          check_circle_outline
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
 
-              <div className="next-results-button-container">
-                {gotAnswerRight && isAnswerSelected ? (
-                  <button
-                    className={"next-button"}
-                    onClick={() => onClickNext()}
-                  >
-                    Next
-                  </button>
-                ) : !gotAnswerRight && isAnswerSelected ? (
-                  <button
-                    className={"next-button"}
-                    onClick={() => setIsResultsPage(true)}
-                  >
-                    Results
-                  </button>
-                ) : null}
+                <div className="next-results-button-container">
+                  {gotAnswerRight && isAnswerSelected ? (
+                    <button
+                      className={"next-button"}
+                      onClick={() => onClickNext()}
+                    >
+                      Next
+                    </button>
+                  ) : !gotAnswerRight && isAnswerSelected ? (
+                    <button
+                      className={"next-button"}
+                      onClick={() => setIsResultsPage(true)}
+                    >
+                      Results
+                    </button>
+                  ) : null}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      )}
+            )}
+          </div>
+        ) : (
+          <div className="loader"></div>
+        )}
+      </div>
     </div>
   );
 }
