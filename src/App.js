@@ -59,7 +59,7 @@ function App() {
         default:
           break;
       }
-      // console.log(type, quiz, answer_options);
+      console.log(quiz);
       setCurrentQuiz(quiz);
       setOptions(answer_options.map((option) => countriesDetails[option].name));
     }
@@ -71,7 +71,11 @@ function App() {
     if (result) {
       setCountOfQuestions(countOfQuestions + 1);
       setGotAnswerRight(true);
-    } else setGotAnswerRight(false);
+    } else {
+      setGotAnswerRight(false);
+      selectedElement.innerHTML +=
+        '<span class="material-icons">highlight_off</span>';
+    }
     setIsAnswerSelected(event.target);
     selectedElement.classList.add("selected");
   };
@@ -94,7 +98,9 @@ function App() {
           const countryDetail = {
             name: country.name.common,
             capital: country.capital, //.join(", "),
-            coatOfArms: country.coatOfArms.png,
+            coatOfArms: country.coatOfArms.png
+              ? country.coatOfArms.png
+              : country.coatOfArms.svg,
             flags: country.flags.png, // || country.flags.svg,
           };
           return countryDetail;
@@ -115,16 +121,32 @@ function App() {
       {countriesDetails && (
         <div className="quiz-container">
           {!currentQuiz && !isResultsPage ? (
-            <div className="start-button-container">
-              <button className="start-button" onClick={() => getQuestion()}>
-                Start
-              </button>
+            <div>
+              <div className="start-image">
+                <img
+                  src={"/assets/images/quiz-result.PNG"}
+                  alt="country-question"
+                ></img>
+              </div>
+              <div className="start-button-container">
+                <button className="start-button" onClick={() => getQuestion()}>
+                  Start
+                </button>
+              </div>
             </div>
           ) : isResultsPage ? (
             <div>
+              <div className="result-image">
+                <img
+                  src={"/assets/images/quiz-result.PNG"}
+                  alt="country-question"
+                ></img>
+              </div>
               <div className="result-heading">Results</div>
               <div className="result-count">
-                You got {countOfQuestions} right answers
+                You got{" "}
+                <span className="right-answer-count">{countOfQuestions}</span>{" "}
+                right answers
               </div>
               <div className="start-button-container">
                 <button
@@ -162,6 +184,11 @@ function App() {
                     disabled={isAnswerSelected}
                   >
                     {option}
+                    {option === currentQuiz.answer && isAnswerSelected && (
+                      <span className="material-icons">
+                        check_circle_outline
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>
