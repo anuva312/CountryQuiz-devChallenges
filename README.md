@@ -33,23 +33,25 @@ Fulfill user stories below:
 
 ### Demo
 
-Find the site in action [here]()!
+Find the site in action [here](https://quirky-panini-10618a.netlify.app/)!
 
 #### Quiz Question
 
-![quiz-question](public/assets/images/quiz-question.PNG)
+![quiz-question](public/assets/images/quiz-question-wide.PNG)
 
 #### With answer
 
-![quiz-with-answer](public/assets/images/quiz-with-answer.PNG)
+![quiz-with-answer](public/assets/images/quiz-with-answer-wide.PNG)
 
 #### Results Page
 
-![quiz-result-page](public/assets/images/results.PNG)
+![quiz-result-page](public/assets/images/results-wide.PNG)
 
 ### Built With
 
 - [React](https://reactjs.org/)
+
+<!-- How To Use -->
 
 ## How To Use
 
@@ -65,6 +67,8 @@ $ yarn install
 # Run the app
 $ yarn start
 ```
+
+<!-- Acknowledgements -->
 
 ## Acknowledgements
 
