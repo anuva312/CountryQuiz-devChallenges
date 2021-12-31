@@ -1,7 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
-  min-height: 95vh;
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 2% auto 0;
   background: linear-gradient(
       -70deg,
@@ -9,18 +8,19 @@ body {
       rgba(0, 0, 0, 0) 30%
     ),
     #1d355d;
-  position: relative;
 }
 
 .footer {
   width: 100%;
+  max-width: 1700px;
+  margin-top: 2%;
   font-family: Poppins;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   text-align: center;
-  color: #ffffff;
-  position: absolute;
+  color: slategrey;
+  position: fixed;
   bottom: 0;
 }
 
