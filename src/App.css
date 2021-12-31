@@ -1,6 +1,6 @@
 button {
   cursor: pointer;
-  border: none;
+  border-color: transparent;
 }
 
 .quiz-container {
@@ -56,13 +56,13 @@ button {
 }
 
 .quiz-option-button:hover {
-  border: none;
+  border-color: transparent;
   background: #f9a826;
   color: #ffffff;
 }
 
 .quiz-option-button.wrong-answer.selected {
-  border: none;
+  border-color: transparent;
   background: #ea8282;
   color: #ffffff;
 }
