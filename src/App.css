@@ -11,6 +11,7 @@ button {
   border-radius: 24px;
   font-family: Poppins;
   font-style: normal;
+  margin-bottom: 5%;
 }
 
 .quiz-question-container {
