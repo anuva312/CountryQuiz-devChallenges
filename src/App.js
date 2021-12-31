@@ -72,16 +72,25 @@ function App() {
         default:
           break;
       }
-
-      setCurrentQuiz(quiz);
-
-      // Using the indices, find the actual names of the countries
-      setOptions(
-        answer_options.map(
-          (option, index) =>
-            options_alphabets[index] + countriesDetails[option].name
-        )
-      );
+      if (type === "capital" && !countriesDetails[right_answer].capital) {
+        getQuestion();
+      } else if (type === "flag" && !countriesDetails[right_answer].flags) {
+        getQuestion();
+      } else if (
+        type === "coatOfArms" &&
+        !countriesDetails[right_answer].coatOfArms
+      ) {
+        getQuestion();
+      } else {
+        setCurrentQuiz(quiz);
+        // Using the indices, find the actual names of the countries
+        setOptions(
+          answer_options.map(
+            (option, index) =>
+              options_alphabets[index] + countriesDetails[option].name
+          )
+        );
+      }
     }
   };
 
