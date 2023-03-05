@@ -96,7 +96,7 @@ function App() {
 
   const onSubmitAnswer = function (event) {
     const selectedElement = event.target;
-    const result = selectedElement.innerHTML === currentQuiz.answer;
+    const result = selectedElement.innerHTML === currentQuiz?.answer;
     if (result) {
       setCountOfQuestions(countOfQuestions + 1);
       setGotAnswerRight(true);
@@ -155,10 +155,12 @@ function App() {
             {!currentQuiz && !isResultsPage ? (
               <div>
                 <div className="start-image">
-                  <img
-                    src={"/assets/images/quiz-result.PNG"}
-                    alt="country-question"
-                  ></img>
+                  <figure>
+                    <img
+                      src={"/assets/images/quiz-result.PNG"}
+                      alt="country-question"
+                    ></img>
+                  </figure>
                 </div>
                 <div className="start-button-container">
                   <button
@@ -173,10 +175,12 @@ function App() {
             isResultsPage ? (
               <div>
                 <div className="result-image">
-                  <img
-                    src={"/assets/images/quiz-result.PNG"}
-                    alt="country-question"
-                  ></img>
+                  <figure>
+                    <img
+                      src={"/assets/images/quiz-result.PNG"}
+                      alt="country-question"
+                    ></img>
+                  </figure>
                 </div>
                 <div className="result-heading">Results</div>
                 <div className="result-count">
@@ -202,9 +206,14 @@ function App() {
             ) : (
               // The actual quiz questions and options
               <div className="quiz-question-container">
-                {currentQuiz.image && (
+                {currentQuiz?.image && (
                   <div className="quiz-image">
-                    <img src={currentQuiz.image} alt="country-question"></img>
+                    <figure>
+                      <img
+                        src={currentQuiz?.image ?? ""}
+                        alt="country-question"
+                      ></img>
+                    </figure>
                   </div>
                 )}
                 <div className="quiz-question">{currentQuiz?.question}</div>
@@ -213,7 +222,7 @@ function App() {
                     <button
                       key={index}
                       className={`quiz-option-button ${
-                        option === currentQuiz.answer
+                        option === currentQuiz?.answer
                           ? `right-answer ${isAnswerSelected ? "selected" : ""}`
                           : "wrong-answer"
                       } `}
@@ -221,7 +230,7 @@ function App() {
                       disabled={isAnswerSelected}
                     >
                       {option}
-                      {option === currentQuiz.answer && isAnswerSelected && (
+                      {option === currentQuiz?.answer && isAnswerSelected && (
                         <span className="material-icons">
                           check_circle_outline
                         </span>
