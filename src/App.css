@@ -57,7 +57,11 @@ button {
   justify-content: space-between;
 }
 
-.quiz-option-button:hover {
+.quiz-option-button:disabled {
+  cursor: not-allowed;
+}
+
+.quiz-option-button:enabled:hover {
   border-color: transparent;
   background: #f9a826;
   color: #ffffff;
@@ -81,7 +85,7 @@ button {
 }
 
 .next-button {
-  box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+  /* box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4); */
   border-radius: 12px;
   font-family: Poppins;
   font-style: normal;
@@ -98,6 +102,7 @@ button {
   background: #f9a826;
   color: #ffffff;
   border-color: transparent;
+  box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
 }
 
 .start-button-container {
