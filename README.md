@@ -1,6 +1,6 @@
 # Country
 
-Solution for the [Country Challenge](https://devchallenges.io/challenges/Bu3G2irnaXmfwQ8sZkw8) from [Devchallenges.io](https://devchallenges.io).
+Solution for the [Country Challenge](https://legacy.devchallenges.io/challenges/Bu3G2irnaXmfwQ8sZkw8) from [Devchallenges.io](https://legacy.devchallenges.io).
 
 <!-- TABLE OF CONTENTS -->
 
